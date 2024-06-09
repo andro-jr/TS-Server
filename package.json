@@ -1,4 +1,15 @@
 {
+  "name": "ts-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/andro-jr/TS-Server.git",
+  "author": "andro-jr <prabin20panta@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start:build": "tsc -w",
+    "start:run": "nodemon build/index.js",
+    "start": "concurrently npm:start:*"
+  },
   "devDependencies": {
     "concurrently": "^8.2.2",
     "nodemon": "^3.1.3"
