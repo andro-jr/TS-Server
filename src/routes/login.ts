@@ -24,7 +24,18 @@ router.get("/login", (req: Request, res: Response) => {
 
 router.post("/login", (req: RequestWithBody, res: Response) => {
   const { email, password } = req.body;
-  res.json({ email: email && email.toUpperCase(), password });
+
+  if (
+    email &&
+    password &&
+    email === "prabin20panta@gmail.com" &&
+    password === "ladalam"
+  ) {
+    req.session = { loggedIn: true };
+    res.redirect("/");
+  } else {
+    res.send("Invalid credentials!");
+  }
 });
 
 export default router;
