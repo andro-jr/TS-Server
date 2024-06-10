@@ -2,6 +2,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const router = (0, express_1.Router)();
+const requireAuth = (req, res, next) => {
+    var _a;
+    if ((_a = req.session) === null || _a === void 0 ? void 0 : _a.loggedIn) {
+        return next();
+    }
+    res.status(403).send("Not Permitted");
+};
 router.get("/login", (req, res) => {
     res.send(`
       <form method="POST" action="/login">
@@ -52,5 +59,8 @@ router.get("/", (req, res) => {
 router.get("/logout", (req, res) => {
     req.session = undefined;
     res.redirect("/");
+});
+router.get("/protected", requireAuth, (req, res) => {
+    res.send("You are inside protected Route!");
 });
 exports.default = router;
