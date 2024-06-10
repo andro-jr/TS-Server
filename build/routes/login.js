@@ -19,6 +19,6 @@ router.get("/login", (req, res) => {
 });
 router.post("/login", (req, res) => {
     const { email, password } = req.body;
-    res.json({ email, password });
+    res.json({ email: email && email.toUpperCase(), password });
 });
 exports.default = router;
